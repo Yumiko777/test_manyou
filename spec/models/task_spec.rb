@@ -1,28 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Task, type: :model do
-  describe 'タスクモデル機能', type: :model do
-  describe 'バリデーションのテスト' do
+RSpec.describe 'タスク管理機能', type: :model do
+  it 'nameが空ならバリデーションが通らない' do
+    task = Task.new(name: '', detail: '失敗テスト')
+    expect(task).not_to be_valid
+  end
 
-    context 'タスクのタイトルが空の場合' do
-      it 'バリデーションにひっかる' do
-        task = Task.new(title: '', content: '失敗テスト')
-        expect(task).not_to be_valid
-      end
-    end
+  it 'detailが空ならバリデーションが通らない' do
+    task = Task.new(name: '失敗テスト', detail: '')
+    expect(task).to be_valid
+  end
 
-    context 'タスクの詳細が空の場合' do
-      it 'バリデーションにひっかかる' do
-        task = Task.new(title: '失敗テスト', content: '')
-        expect(task).not_to be_valid
-      end
-    end
-
-    context 'タスクのタイトルと詳細に内容が記載されている場合' do
-      it 'バリデーションが通る' do
-        task = Task.new(title: '成功テスト', content: '成功テスト')
-        expect(task).to be_valid
-      end
-    end
+  it 'nameとdetailに内容が記載されていればバリデーションが通る' do
+    task = Task.new(name: '成功テスト', detail: '成功テスト')
+    expect(task).to be_valid
   end
 end
