@@ -10,7 +10,7 @@
   <body>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td class = "task_row" ><%= task.name %></td>
         <td><%= task.detail %></td>
         <td><%= link_to t('view.check_task_detail'),task_path(task.id) %></td>
         <td><%= link_to t('view.edit_task'),edit_task_path(task.id) %></td>
