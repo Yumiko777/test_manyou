@@ -1,0 +1,14 @@
+ja:
+  view:
+    task_name: タスク名
+    task_detail: タスク詳細
+    task_list: タスクリスト
+    back_task_list: タスク一覧に戻る
+    check_task_detail: タスク詳細を確認する
+    edit_task: タスクを編集する
+    delete_task: タスクを削除する
+    create_task: 新しくタスクを登録する
+    new_task: タスクを作成する
+    show_task: タスク詳細画面
+    error: 件のエラーがあります
+    confirm: 本当に削除していいですか？
