@@ -34,3 +34,17 @@
 - user_id:integer
 - task_id:integer
 - name:string
+
+## Heokuへデプロイ手順
+
+- Gemバージョン：3.0.3
+
+- $ heroku login #ログイン
+- $ heroku create #新しいリポジトリ作成
+- $ rails assets:precompile RAILS_ENV=production #アセットプリコンパイルを実施
+- $ git add .
+- $ git commit -m"コミットメッセージ "
+- $ git push heroku master #herokuにpush
+- $ heroku run rails db:migrate #heroku上にDB作成
+- $ heroku config #アプリ名
+- Herokuアプリのアドレスはhttps://アプリ名.herokuapp.com/のように設定される
