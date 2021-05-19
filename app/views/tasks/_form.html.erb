@@ -14,9 +14,13 @@
     <%= form.text_field :name %>
   </div>
   <div class="task_detail">
-    <%= form.label :task_detail%>
+    <%= form.label :task_detail %>
     <%= form.text_field :detail %>
   </div>
+  <div class="task_deadline">
+    <%= form.label :task_deadline %>
+    <%= form.date_field :deadline %>
+    </div>
   <%= form.submit %>
 <% end %>
 <%= link_to t('view.back_task_list'), tasks_path %>
