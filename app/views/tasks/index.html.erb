@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <h1><%= t('view.task_list') %></h1>
 <p><%= notice %></p>
 
@@ -8,7 +10,8 @@
 <p>ステータス検索</p>
 <%= form.select :status, {'未着手': 0, '着手中': 1, '完了': 2},include_blank: '選択してください' %>
 </div>
-<button type="button" class="btn btn-primary"><%= form.submit '検索' %></button>
+<br>
+<%= form.submit '検索' %>
 <% end %>
 
 <table>
@@ -38,7 +41,7 @@
 </table>
 <br>
 
-<%= link_to t('view.create_task'), new_task_path %>
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<%= link_to "優先度高い順でソートする", tasks_path(sort_priority_high: "true") %>
-<%= paginate @tasks %>
+<button type="button" class="btn btn-success btn-sm"><%= link_to t('view.create_task'), new_task_path %></button>
+<button type="button" class="btn btn-warning btn-sm"><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></button>
+<button type="button" class="btn btn-danger btn-sm"><%= link_to "優先度高い順でソートする", tasks_path(sort_priority_high: "true") %></button>
+<nav aria-label="Page navigation example"><%= paginate @tasks %>
