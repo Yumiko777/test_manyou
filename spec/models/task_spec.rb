@@ -12,7 +12,7 @@ RSpec.describe 'タスク管理機能', type: :model do
   end
 
   it 'nameとdetailに内容が記載されていればバリデーションが通る' do
-    task = Task.new(name: '成功テスト', detail: '成功テスト', deadline: DateTime.now )
+    task = Task.new(name: '成功テスト', detail: '成功テスト', deadline: DateTime.now , status: 0, priority: 1)
     expect(task).to be_valid
   end
 

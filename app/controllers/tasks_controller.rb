@@ -10,17 +10,22 @@ class TasksController < ApplicationController
       @tasks = Task.all
       @tasks = @tasks.order(created_at: :desc)
     end
+
+    if params[:sort_priority_high]
+      @tasks = Task.all
+      @tasks = @tasks.order(priority: :asc)
+    end
       #もし渡されたパラメータがタイトルとステータス両方だったとき
-      if params[:name].present? && params[:status].present?
-        @tasks = @tasks.search_name params[:name]
-        @tasks = @tasks.search_status params[:status]
+    if params[:name].present? && params[:status].present?
+      @tasks = @tasks.search_name params[:name]
+      @tasks = @tasks.search_status params[:status]
       #もし渡されたパラメータがタイトルのみだったとき
-      elsif params[:name].present?
-        @tasks = @tasks.search_name params[:name]
+    elsif params[:name].present?
+      @tasks = @tasks.search_name params[:name]
       #もし渡されたパラメータがステータスのみだったとき
-      elsif params[:status].present?
-        @tasks = @tasks.search_status params[:status]
-      end
+    elsif params[:status].present?
+      @tasks = @tasks.search_status params[:status]
+    end
   end
 
   def new
@@ -57,7 +62,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :detail, :deadline, :status)
+    params.require(:task).permit(:name, :detail, :deadline, :status, :priority)
   end
 
   def set_task

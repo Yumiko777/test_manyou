@@ -47,14 +47,14 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in :task_name, with: 'task1'
         fill_in :task_detail, with: 'task1'
         fill_in :task_deadline, with: '002021-12-31'
-      
-
+        select '着手中', from: :task_status
+        select '中', from: :task_priority
         click_on '登録する'
-        expect(page).to have_content 'task1'
+        expect(page).to have_content 'task2'
+        expect(page).to have_content '着手中'
       end
     end
   end
-
 
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
@@ -80,13 +80,20 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on '終了期限でソートする'
         visit tasks_path(sort_expired: "true")
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'test_name2'
-
+        expect(task_list[0]).to have_content 'task2'
       end
     end
 
+     context '優先度高い順でソートした場合' do
+       it 'タスクが優先度順に並んでいる' do
+         visit tasks_path
+         click_on '優先度高い順でソートする'
+         visit tasks_path(sort_priority_high: "true")
+         task_list = all('.task_row')
+         expect(task_list[1]).to have_content '高'
 
-
+       end
+     end
 
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
