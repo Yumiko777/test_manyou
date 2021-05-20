@@ -10,17 +10,24 @@
     </div>
   <% end %>
   <div class="task_name">
-    <%= form.label :task_name %>
+    <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
   <div class="task_detail">
-    <%= form.label :task_detail %>
+    <%= form.label :detail %>
     <%= form.text_field :detail %>
   </div>
   <div class="task_deadline">
-    <%= form.label :task_deadline %>
+    <%= form.label :deadline %>
     <%= form.date_field :deadline %>
-    </div>
-  <%= form.submit %>
+  </div>
+  <div class="task_status">
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
 <%= link_to t('view.back_task_list'), tasks_path %>
