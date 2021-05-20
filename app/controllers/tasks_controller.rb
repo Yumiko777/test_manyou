@@ -26,6 +26,8 @@ class TasksController < ApplicationController
     elsif params[:status].present?
       @tasks = @tasks.search_status params[:status]
     end
+
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def new
