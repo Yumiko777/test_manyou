@@ -74,7 +74,6 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-
     context '終了期限でソートした場合' do
       it 'タスクが終了期限順に並んでいる' do
         visit tasks_path
