@@ -12,3 +12,6 @@ ja:
     show_task: タスク詳細画面
     error: 件のエラーがあります
     confirm: 本当に削除していいですか？
+    task_deadline: 終了期限
+    task_status: ステータス
+    task_priority: 優先度
