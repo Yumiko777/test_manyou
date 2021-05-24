@@ -97,13 +97,14 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
       end
 
       it "管理者はユーザ新規登録ができる" do
-        click_on "新規ユーザー作成"
-        fill_in "user_name", with: "taro"
-        fill_in "user_email", with: "taro@taro.com"
-        fill_in "user_password", with: "23456789"
-        fill_in "user_password_confirmation", with: "23456789"
+        click_link "新規ユーザー作成"
+        binding.pry
+        fill_in "user_name", with: 'test_user2'
+        fill_in "user_email", with: 'test_user2@test.com'
+        fill_in "user_password", with: '87654321'
+        fill_in "user_password_confirmation", with: '87654321'
         click_on "登録する"
-        expect(page).to have_content "taro"
+        expect(page).to have_content 'test_user2'
       end
 
       it "管理者はユーザの詳細画面へアクセスできる" do
@@ -115,12 +116,12 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
       it "管理者ユーザーの編集画面からユーザーの編集ができる" do
         @user = FactoryBot.create(:user)
         visit edit_admin_user_path(id: @user.id)
-        fill_in 'user_name', with: 'test_user1001'
-        fill_in 'user_email', with: 'test_user_1001@test.com'
+        fill_in 'user_name', with: 'test_user1'
+        fill_in 'user_email', with: 'test_user1@test.com'
         fill_in 'user_password', with: '12345678'
         fill_in 'user_password_confirmation', with: '12345678'
         click_on '更新する'
-        expect(page).to have_content "test_user_1001"
+        expect(page).to have_content "test_user1"
       end
 
       it "管理者はユーザーを削除できる" do
