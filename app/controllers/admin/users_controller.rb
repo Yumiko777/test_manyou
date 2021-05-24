@@ -10,7 +10,6 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-    binding.pry
       redirect_to admin_users_path, notice: "ユーザー  #{@user.name}を登録しました！"
     else
       render :new
