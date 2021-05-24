@@ -98,7 +98,7 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
 
       it "管理者はユーザ新規登録ができる" do
         click_link "新規ユーザー作成"
-        binding.pry
+        #binding.pry
         fill_in "user_name", with: 'test_user2'
         fill_in "user_email", with: 'test_user2@test.com'
         fill_in "user_password", with: '87654321'
