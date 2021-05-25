@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+<h1>ラベル</h1>
+<p><%= notice %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <tr class="table-info">
+      <th>名前</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <body>
+    <% @labels.each do |label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <td><%= link_to "詳細" ,label %></td>
+        <td><%= link_to "編集" ,edit_label_path(label) %></td>
+        <td><%= link_to "削除" , label, method: :delete ,data: { confirm: t('view.confirm') } %></td>
+      </tr>
+    <% end %>
+  </body>
+</table>
+<br>
+
+<%= link_to "新規ラベル", new_label_path %>
