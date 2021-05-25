@@ -5,6 +5,7 @@ FactoryBot.define do
     deadline { DateTime.now }
     status { 'completed' }
     priority { 'low' }
+    association :user
   end
 
   factory :second_task, class: Task do
@@ -13,5 +14,6 @@ FactoryBot.define do
     deadline { DateTime.tomorrow }
     status { 'doing' }
     priority { 'middle' }
+    association :user
   end
 end

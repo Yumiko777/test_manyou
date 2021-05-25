@@ -1,18 +1,19 @@
 class TasksController < ApplicationController
+  before_action :current_user, only:[:edit, :update, :destroy]
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     #@tasks = Task.all.order(created_at: :desc)
     if params[:sort_expired]
-      @tasks = Task.all
+      @tasks = current_user.tasks
       @tasks = @tasks.order(deadline: :desc)
     else
-      @tasks = Task.all
+      @tasks = current_user.tasks
       @tasks = @tasks.order(created_at: :desc)
     end
 
     if params[:sort_priority_high]
-      @tasks = Task.all
+      @tasks = current_user.tasks
       @tasks = @tasks.order(priority: :asc)
     end
       #もし渡されたパラメータがタイトルとステータス両方だったとき
@@ -35,11 +36,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    if @task.save
-      redirect_to tasks_path, notice: "登録しました"
+    @task = current_user.tasks.new(task_params)
+    if params[:back]
+      render :new
     else
-      render "new"
+      if @task.save
+        redirect_to tasks_path, notice: 'タスクを登録しました！'
+      else
+        render :new
+      end
     end
   end
 
@@ -51,15 +56,15 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "編集しました！"
+      redirect_to tasks_path, notice: "タスクを編集しました！"
     else
-      rendere :edit
+      render :edit
     end
   end
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice:"削除しました！"
+    redirect_to tasks_path, notice:"タスクを削除しました！"
   end
 
   private
@@ -68,6 +73,6 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 end
