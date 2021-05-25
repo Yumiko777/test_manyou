@@ -26,6 +26,10 @@ class TasksController < ApplicationController
       #もし渡されたパラメータがステータスのみだったとき
     elsif params[:status].present?
       @tasks = @tasks.search_status params[:status]
+
+    elsif params[:label_id].present?
+      @labeling = Labeling.where(label_id: params[:label_id]).pluck(:task_id)
+      @tasks = @tasks.where(id: @labeling)
     end
 
     @tasks = @tasks.page(params[:page]).per(5)
@@ -69,7 +73,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :detail, :deadline, :status, :priority)
+    params.require(:task).permit(:name, :detail, :deadline, :status, :priority, { label_ids: [] })
   end
 
   def set_task

@@ -1,7 +1,13 @@
 <h1><%= t('view.show_task') %></h1>
+
 <p><%= t('view.task_name') %>: <%= @task.name %></p>
 <p><%= t('view.task_detail') %>: <%= @task.detail %></p>
 <p><%= t('view.task_deadline') %>: <%= @task.deadline %></p>
 <p><%= t('view.task_status') %>: <%= @task.status_i18n  %></p>
 <p><%= t('view.task_priority') %>: <%= @task.priority_i18n  %></p>
+
+<% @task.labels.each do |label| %>
+<p>ラベル名 : <%= label.name %></p>
+<% end %>
+<br>
 <%= link_to t('view.back_task_list'), tasks_path %>
