@@ -51,7 +51,6 @@ email = Faker::Internet.email
 password = "password"
 n = 0
 20.times do |n|
-
    User.create!(name: "User_name#{n + 1}",
                email: "User_email#{n + 1}@au.com" ,
                password: password
