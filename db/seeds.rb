@@ -46,7 +46,7 @@ detail = Faker::Games::Pokemon.location
 deadline = Faker::Date.between(from: Date.tomorrow, to: 7.days.since)
 status = ["0","1","2"]
 priority = ["0","1","2"]
-user_id = rand(1..16)
+
 email = Faker::Internet.email
 password = "password"
 n = 0
@@ -62,7 +62,7 @@ n = 0
                 deadline: deadline,
                 status: rand(0..2),
                 priority: rand(0..2),
-                user_id: user_id
+                user_id: rand(User.first.id..User.last.id)
                 )
     Label.create!(name: "Label_name#{n + 1}" )
 
