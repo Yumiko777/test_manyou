@@ -41,7 +41,33 @@
 # 10.times do |n|
 #   Label.create!(name: "Label_name#{n + 1}" )
 # end
-
+name = Faker::Games::Pokemon.name
+detail = Faker::Games::Pokemon.location
+deadline = Faker::Date.between(from: Date.tomorrow, to: 7.days.since)
+status = ["0","1","2"]
+priority = ["0","1","2"]
+user_id = rand(1..16)
+email = Faker::Internet.email
+password = "password"
+n = 0
 20.times do |n|
-  Labeling.create!(task_id: rand(1..20), label_id: rand(1..3))
+
+   User.create!(name: "User_name#{n + 1}",
+               email: "User_email#{n + 1}@l.com" ,
+               password: password
+               )
+
+   Task.create!(name: "User_name#{n + 1}",
+                detail: "User_detail#{n + 1}",
+                deadline: deadline,
+                status: rand(0..2),
+                priority: rand(0..2),
+                user_id: user_id
+                )
+    Label.create!(name: "Label_name#{n + 1}" )
+
+    Labeling.create!(task_id: Task.last.id,
+                     label_id: Label.last.id
+                    )
+    n += 1
 end
