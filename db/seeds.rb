@@ -6,18 +6,42 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
- 5.times do |n|
-   name = Faker::Games::Pokemon.name
-   email = Faker::Internet.email
-   password = "password"
-   User.create!(name: "User_name#{n + 1}",
-                email: "User_email#{n + 1}@sample.com" ,
-                password: password,
-               )
- end
+#  15.times do |n|
+#    name = Faker::Games::Pokemon.name
+#    email = Faker::Internet.email
+#    password = "password"
+#    User.create!(name: "User_name#{n + 1}",
+#                 email: "User_email#{n + 1}@task.com" ,
+#                 password: password,
+#                )
+#  end
+#
+# User.create!(name: "管理者",
+#              email: "admin@sample.com" ,
+#              password: "password",
+#              admin: true
+#              )
 
-User.create!(name: "管理者",
-             email: "admin@sample.com" ,
-             password: "password",
-             admin: true
-             )
+# 20.times do |n|
+#  name = Faker::Games::Pokemon.name
+#  detail = Faker::Games::Pokemon.location
+#  deadline = Faker::Date.between(from: Date.tomorrow, to: 7.days.since)
+#  status = ["0","1","2"]
+#  priority = ["0","1","2"]
+#  user_id = rand(1..16)
+#  Task.create!(name: "User_name#{n + 1}",
+#               detail: "User_detail#{n + 1}",
+#               deadline: deadline,
+#               status: rand(0..2),
+#               priority: rand(0..2),
+#               user_id: user_id
+#               )
+# end
+
+# 10.times do |n|
+#   Label.create!(name: "Label_name#{n + 1}" )
+# end
+
+20.times do |n|
+  Labeling.create!(task_id: rand(1..20), label_id: rand(1..3))
+end
