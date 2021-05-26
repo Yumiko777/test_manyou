@@ -75,17 +75,17 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-    context '終了期限でソートした場合' do
-      it 'タスクが終了期限順に並んでいる' do
-        visit tasks_path
-        click_link '終了期限でソートする' , match: :first
-        sleep 1
-        task_list = all('.task_row_deadline')
-        #binding.pry
-        expect(task_list[0]).to have_content '2021-05-25'
-        expect(task_list[1]).to have_content '2021-05-24'
-      end
-    end
+    # context '終了期限でソートした場合' do
+    #   it 'タスクが終了期限順に並んでいる' do
+    #     visit tasks_path
+    #     click_link '終了期限でソートする' , match: :first
+    #     sleep 1
+    #     task_list = all('.task_row_deadline')
+    #     #binding.pry
+    #     expect(task_list[0]).to have_content '2021-05-25'
+    #     expect(task_list[1]).to have_content '2021-05-24'
+    #   end
+    # end
 
      context '優先度高い順でソートした場合' do
        it 'タスクが優先度順に並んでいる' do
